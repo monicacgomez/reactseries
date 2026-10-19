@@ -24,7 +24,7 @@ export default class ServicePersonajes {
             let url = Global.urlApi + 'api/Personajes/' + id;
     
             axios.get(url).then ((response) => {
-                console.log("Obteniendo al personaje: " + idPersonaje);
+                console.log("Obteniendo al personaje: " + id);
                 resolve(response.data);
             }).catch ((error) => {
                 reject(error);
@@ -64,12 +64,12 @@ export default class ServicePersonajes {
     }
 
     // Para eliminar un personaje por ID
-    deletePersonaje (id){
+    deletePersonaje(id){
         return new Promise((resolve, reject) => {
-            let url = Global.urlApi + 'api/Personajes' + id;
+            let url = Global.urlApi + 'api/Personajes/' + id;
 
             axios.delete(url).then((response) => {
-                console.log("Personaje eliminada: " + idPersonaje);
+                console.log("Personaje eliminada: " + id);
                 resolve(response);
             }).catch ((error) => {
                 reject(error);

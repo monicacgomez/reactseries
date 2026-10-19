@@ -24,7 +24,7 @@ export default class ServiceSeries {
             let url = Global.urlApi + 'api/Series/' + id;
     
             axios.get(url).then ((response) => {
-                console.log("Obteniendo la serie: " + idSerie);
+                console.log("Obteniendo la serie: " + id);
                 resolve(response.data);
             }).catch ((error) => {
                 reject(error);
@@ -64,12 +64,12 @@ export default class ServiceSeries {
     }
 
     // Para eliminar una serie por ID
-    deleteSerie (id){
+    deleteSerie(id){
         return new Promise((resolve, reject) => {
-            let url = Global.urlApi + 'api/Series' + id;
+            let url = Global.urlApi + 'api/Series/' + id;
 
             axios.delete(url).then((response) => {
-                console.log("Serie eliminada: " + idSerie);
+                console.log("Serie eliminada: " + id);
                 resolve(response);
             }).catch ((error) => {
                 reject(error);
