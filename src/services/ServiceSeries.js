@@ -5,13 +5,11 @@ export default class ServiceSeries {
 
     // Obtengo todas las series
     getSeries() {
-        return new Promise(function(resolve, reject) {
-            let url = Global.urlApiSeries;
-            let request = "api/Series";
+        return new Promise((resolve, reject) => {
+            let url = Global.urlApi + 'api/Series';
 
-            axios.get(url + request).then((response) =>{
+            axios.get(url).then((response) =>{
                 console.log( "Leyendo series" );
-
                 resolve(response.data);
             }).catch((error) => {
                 console.log("Error, obteniendo las series: " + error);
@@ -21,12 +19,11 @@ export default class ServiceSeries {
     }
 
     // Obtengo la serie por su ID
-    getSerie(idSerie) {
-        return new Promise(function (resolve, reject) {
-            let url = Global.urlApiSeries;
-            let request = "api/Series/FindSeries/" + idSerie;
-
-            axios.get(url + request).then ((response) => {
+    getSerie(id) {
+        return new Promise((resolve, reject) => {
+            let url = Global.urlApi + 'api/Series/' + id;
+    
+            axios.get(url).then ((response) => {
                 console.log("Obteniendo la serie: " + idSerie);
                 resolve(response.data);
             }).catch ((error) => {
@@ -37,11 +34,10 @@ export default class ServiceSeries {
 
     // Añadir una serie
     insertSerie(serie){
-        return new Promise(function(resolve, reject) {
-            let url = Global.urlApiSeries;
-            let request = "api/Series/InsertSerie";
+        return new Promise((resolve, reject) => {
+            let url = Global.urlApi + 'api/Series';
 
-            axios.post(url + request, serie)
+            axios.post(url, serie)
             .then((response) => {
                 console.log ("Añadir la serie")
                 resolve(response);
@@ -54,11 +50,10 @@ export default class ServiceSeries {
 
     // Actualizar una serie
     updateSerie(serie) {
-        return new Promise(function(resolve, reject) {
-            let url = Global.urlApiSeries;
-            let request = "api/Series/UpdateSerie";
+        return new Promise((resolve, reject) => {
+            let url = Global.urlApi + 'api/Series';
 
-            axios.put(url + request, serie).then((resolve) => {
+            axios.put(url, serie).then((response) => {
                 console.log("Actualiza la serie");
                 resolve(response);
             }).catch((error) => {
@@ -68,5 +63,17 @@ export default class ServiceSeries {
         })
     }
 
+    // Para eliminar una serie por ID
+    deleteSerie (id){
+        return new Promise((resolve, reject) => {
+            let url = Global.urlApi + 'api/Series' + id;
 
+            axios.delete(url).then((response) => {
+                console.log("Serie eliminada: " + idSerie);
+                resolve(response);
+            }).catch ((error) => {
+                reject(error);
+            })
+        })
+    }
 }
